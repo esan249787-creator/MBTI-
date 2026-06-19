@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="자신의 MBTI를 입력하고 3가지 감성 질문에 답하여, 당신의 성향과 오늘 밤의 감성에 어우러진 한국의 아름다운 인생시 한 편을 전해 드립니다.">
+  <meta name="keywords" content="한국시 MBTI, 인생시, 시인 MBTI, 한국 시, 윤동주, 김소월, 백석, 나태주, 한국 현대시">
+  <meta property="og:title" content="한국시 MBTI - 나만의 인생시 찾기">
+  <meta property="og:description" content="MBTI와 오늘의 감성을 조합하여 당신에게 가장 잘 어울리는 한국의 명시를 선물합니다.">
+  <meta property="og:type" content="website">
+  
+  <title>한국시 MBTI - 나만의 인생시 찾기</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 몽환적인 배경 오로라 라이트 -->
+  <div class="aurora-glow-1"></div>
+  <div class="aurora-glow-2"></div>
+
+  <main>
+    <!-- 1. 랜딩 페이지 및 MBTI 선택 섹션 -->
+    <section id="landing-section" class="card active">
+      <h1 class="brand-title">한국시 MBTI</h1>
+      <p class="brand-subtitle">
+        자신의 MBTI를 선택하고 오늘의 마음 상태에 관한 몇 가지 질문에 답해 보세요.<br>
+        당신의 성향과 오늘 밤의 감성에 어우러진 '인생시'를 배달해 드립니다.
+      </p>
+
+      <!-- MBTI 선택 영역 -->
+      <div class="mbti-selector-container">
+        <h3 class="selector-title">나의 MBTI 선택하기</h3>
+        <div class="mbti-selector-box">
+          <div class="toggle-row" data-dimension="EI">
+            <button type="button" class="btn-toggle active" data-value="I">내향형 I</button>
+            <button type="button" class="btn-toggle" data-value="E">외향형 E</button>
+          </div>
+          <div class="toggle-row" data-dimension="SN">
+            <button type="button" class="btn-toggle active" data-value="N">직관형 N</button>
+            <button type="button" class="btn-toggle" data-value="S">감각형 S</button>
+          </div>
+          <div class="toggle-row" data-dimension="TF">
+            <button type="button" class="btn-toggle active" data-value="F">감정형 F</button>
+            <button type="button" class="btn-toggle" data-value="T">사고형 T</button>
+          </div>
+          <div class="toggle-row" data-dimension="JP">
+            <button type="button" class="btn-toggle active" data-value="P">인식형 P</button>
+            <button type="button" class="btn-toggle" data-value="J">판단형 J</button>
+          </div>
+        </div>
+
+        <!-- 실시간 성향 프리뷰 -->
+        <div class="mbti-preview-box">
+          <span class="mbti-preview-label">나의 시적 성향</span>
+          <div id="mbti-preview-text" class="mbti-preview-text">고독한 나타샤 (INFP)</div>
+        </div>
+      </div>
+
+      <button id="btn-start" class="btn-submit">
+        오늘의 감성 질문으로 이동
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+
+      <p class="desc-tip">
+        ※ <span>AI가 지어낸 시는 일절 포함되어 있지 않습니다.</span><br>
+        윤동주, 김소월, 백석, 이육사 등 한국 문학사를 빛낸 시인들의 대표작 50편 이상 중 당신의 성향과 오늘의 기분에 가장 걸맞은 실제 명시를 연결해 드립니다.
+      </p>
+    </section>
+
+    <!-- 2. 퀴즈 진행 섹션 (감성 질문) -->
+    <section id="quiz-section" class="card" style="display: none;">
+      <div class="quiz-header">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar" style="width: 0%;"></div>
+        </div>
+        <span id="question-number" class="question-number">1 / 3</span>
+      </div>
+
+      <div class="question-container">
+        <h2 id="question-text" class="question-text">질문 내용이 여기에 들어갑니다.</h2>
+      </div>
+
+      <div class="options-container" id="options-container">
+        <!-- 옵션 버튼들이 동적으로 생성됩니다. -->
+      </div>
+    </section>
+
+    <!-- 3. 결과 페이지 및 시 감상 섹션 -->
+    <section id="result-section" class="card" style="display: none;">
+      <div class="result-header-box">
+        <span class="result-label">당신의 시적 성향</span>
+        <h1 id="user-mbti-type" class="user-mbti-type">사색하는 별빛 (INFJ)</h1>
+      </div>
+
+      <article class="poem-card">
+        <div class="poem-header">
+          <h2 id="poem-title">시 제목</h2>
+          <span id="poet-name">시인 이름</span>
+        </div>
+        
+        <p id="poem-content">시 본문이 여기에 렌더링됩니다.</p>
+        
+        <div class="reason-box">
+          <p id="match-reason">매칭 사유가 렌더링됩니다.</p>
+        </div>
+      </article>
+
+      <div class="button-grid">
+        <button id="btn-restart" class="btn-action highlight">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          다시 테스트하기
+        </button>
+        <button id="btn-share-copy" class="btn-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          인생시 구절 복사
+        </button>
+      </div>
+
+      <button id="btn-home" class="btn-back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        처음 화면으로 돌아가기
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 한국시 MBTI. 모든 작품은 한국의 위대한 시인들의 고귀한 유산입니다.</p>
+  </footer>
+
+  <!-- 스크립트 연결 -->
+  <script src="poems.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
